@@ -1,11 +1,20 @@
+import { useState } from "react";
 import styled from "styled-components";
 import planets from "../../data/data.json";
 import { theme } from "../../styles/theme";
 
 function NavBar() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [opacity, setOpacity] = useState(1);
+  const toggle = () => setModalOpen(!modalOpen);
+
+  const handleOpacity = (e) => {
+    return setOpacity(e);
+  };
+
   return (
     <Header>
-      <h1> The Planets</h1>
+      <h1>The Planets</h1>
       <Planet>
         {planets.map((planet) => (
           <PlanetContainer key={planet.id} color={handleColor(planet.name)}>
@@ -14,11 +23,33 @@ function NavBar() {
         ))}
       </Planet>
       <PlanetHamburger>
-        <img
-          src={process.env.PUBLIC_URL + "/assets/icon-hamburger.svg"}
-          alt=""
-        />
+        <HamburgerWrapper>
+          <Hamburger
+            onClick={() =>
+              toggle() ? handleOpacity(opacity) : handleOpacity(1.3 - opacity)
+            }
+            opacity={opacity}
+            src={process.env.PUBLIC_URL + "/assets/icon-hamburger.svg"}
+            alt=""
+          />
+          {console.log(opacity)}
+        </HamburgerWrapper>
       </PlanetHamburger>
+      <PlanetSidebar modalOpen={modalOpen}>
+        {planets.map((planet) => (
+          <ul>
+            <li key={planet.id}>
+              <Circle color={handleColor(planet.name)} />
+              {planet.name}
+              <Arrow
+                src={process.env.PUBLIC_URL + "/assets/icon-chevron.svg"}
+                alt=""
+              />
+            </li>
+            <hr />
+          </ul>
+        ))}
+      </PlanetSidebar>
     </Header>
   );
 }
@@ -46,7 +77,7 @@ export default NavBar;
 const Header = styled.div`
   text-transform: uppercase;
   color: ${(props) => props.theme.fontColor};
-  border-bottom: 1px solid ${(props) => props.theme.paynesGrey};
+  border-bottom: 1px solid ${(props) => props.theme.default};
   display: flex;
   justify-content: space-between;
 
@@ -137,9 +168,93 @@ const PlanetContainer = styled.ul`
 `;
 
 const PlanetHamburger = styled.div`
+  z-index: 5;
   margin: 26px 24px 25px 0;
+  position: relative;
 
   @media ${(props) => props.theme.tablet} {
     display: none;
   }
+`;
+
+const Hamburger = styled.img`
+  cursor: pointer;
+  opacity: ${(props) => props.opacity};
+`;
+
+const PlanetSidebar = styled.div`
+  position: fixed;
+  top: 75px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  padding: 20px;
+  padding: 20px 50px 20px 30px;
+  transform: ${(props) =>
+    props.modalOpen ? "translateX(0)" : "translateX(100%)"};
+  transition: transform 0.3s ease-in-out;
+  background-color: ${(props) => props.theme.background};
+  background-image: none;
+
+  @media ${(props) => props.theme.tablet} {
+    display: none;
+  }
+  ul {
+    list-style: none;
+
+    li {
+      position: relative;
+      line-height: 25px;
+      letter-spacing: 1.36px;
+      padding: 18px 10px;
+      color: ${(props) => props.theme.fontColor};
+      background-color: ${(props) => props.theme.background};
+      font-weight: ${(props) => props.theme.spartanBold};
+      background-image: none;
+      font-size: 15px;
+      padding-left: 68px;
+    }
+
+    hr {
+      background-color: ${(props) => props.theme.default};
+      background-image: none;
+      height: 1px;
+      width: 88%;
+      border: none;
+    }
+
+    &:nth-child(8) {
+      hr {
+        display: none;
+      }
+    }
+  }
+`;
+
+const HamburgerWrapper = styled.div``;
+
+const Arrow = styled.img`
+  position: absolute;
+  top: 29px;
+  right: 32px;
+  bottom: 29px;
+  left: 84%;
+
+  @media (min-width: 413px) {
+    left: 85%;
+  }
+`;
+
+const Circle = styled.div`
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: ${(props) => props.color};
+  z-index: 3;
+  border-radius: 100%;
+  bottom: 20px;
+  left: 0;
+  right: 331px;
 `;
