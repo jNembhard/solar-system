@@ -1,12 +1,15 @@
 import { useState } from "react";
 import styled from "styled-components";
-import planets from "../../data/data.json";
+import planets from "../../data/planets.json";
 import { theme } from "../../styles/theme";
+import { Link } from "react-router-dom";
 
 function NavBar() {
   const [modalOpen, setModalOpen] = useState(false);
   const [opacity, setOpacity] = useState(1);
+  const [active, setActive] = useState(false);
   const toggle = () => setModalOpen(!modalOpen);
+  const toggleColor = () => setActive(!active);
 
   const handleOpacity = (e) => {
     return setOpacity(e);
@@ -18,6 +21,7 @@ function NavBar() {
       <Planet>
         {planets.map((planet) => (
           <PlanetContainer key={planet.id} color={handleColor(planet.name)}>
+            {/* {console.log(toggleCol} */}
             <li className="planet__link">{planet.name}</li>
           </PlanetContainer>
         ))}
@@ -32,13 +36,13 @@ function NavBar() {
             src={process.env.PUBLIC_URL + "/assets/icon-hamburger.svg"}
             alt=""
           />
-          {console.log(opacity)}
+          {/* {console.log(opacity)} */}
         </HamburgerWrapper>
       </PlanetHamburger>
       <PlanetSidebar modalOpen={modalOpen}>
         {planets.map((planet) => (
           <ul>
-            <li key={planet.id}>
+            <li key={planet.id} onClick={() => setModalOpen(false)}>
               <Circle color={handleColor(planet.name)} />
               {planet.name}
               <Arrow
@@ -197,6 +201,7 @@ const PlanetSidebar = styled.div`
   transition: transform 0.3s ease-in-out;
   background-color: ${(props) => props.theme.background};
   background-image: none;
+  cursor: pointer;
 
   @media ${(props) => props.theme.tablet} {
     display: none;
