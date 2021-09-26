@@ -13,10 +13,6 @@ const planetSlice = createSlice({
   name: "solar",
   initialState: initialPlanetState,
   reducers: {
-    setCurrentPlanet: (state, action) => {
-      state.currentPlanetIndex = action.payload;
-    },
-
     setCurrentDescription: (state, action) => {
       const choice = action.payload;
 

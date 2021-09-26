@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import planets from "../../data/planets.json";
 
-function PlanetMetrics() {
+function PlanetMetrics({ temperature, radius, revolution, rotation }) {
   const blocks = [
-    { id: 1, metric: "rotation time", name: `${planets[0].rotation}` },
-    { id: 2, metric: "revolution time", name: `${planets[0].revolution}` },
-    { id: 3, metric: "radius", name: `${planets[0].radius}` },
-    { id: 4, metric: "average temp", name: `${planets[0].temperature}` },
+    { id: 1, metric: "rotation time", name: `${rotation}` },
+    { id: 2, metric: "revolution time", name: `${revolution}` },
+    { id: 3, metric: "radius", name: `${radius}` },
+    { id: 4, metric: "average temp", name: `${temperature}` },
   ];
   return (
     <Metrics>
@@ -49,8 +49,6 @@ const MetricContainer = styled.div`
     color: ${(props) => props.theme.buttonOutline};
     font-weight: ${(props) => props.theme.spartanBold};
     margin-left: 24px;
-    /* align-items: center;
-    justify-content: center; */
     background-image: none;
 
     span {
@@ -60,10 +58,10 @@ const MetricContainer = styled.div`
       font-weight: ${(props) => props.theme.antonioMedium};
       letter-spacing: -0.75px;
       color: ${(props) => props.theme.fontColor};
-      width: 75px;
+      width: 90px;
       top: 1px;
       bottom: 13px;
-      left: 206px;
+      left: 190px;
       height: 100%;
       text-align: right;
     }

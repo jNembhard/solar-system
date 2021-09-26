@@ -3,6 +3,7 @@ import planets from "../../data/planets.json";
 import styled from "styled-components";
 
 function TopSelect() {
+  // const [planetData, setPlanetData] = useState();
   // const select = ["overview", "structure", "surface"];
   return (
     <Top>
@@ -38,5 +39,9 @@ const Top = styled.div`
       padding-bottom: 18px;
       color: ${(props) => props.theme.fontColor};
     }
+  }
+
+  @media ${(props) => props.theme.tablet} {
+    display: none;
   }
 `;

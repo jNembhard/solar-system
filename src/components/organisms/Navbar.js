@@ -20,7 +20,12 @@ function NavBar() {
       <h1>The Planets</h1>
       <Planet>
         {planets.map((planet) => (
-          <PlanetContainer key={planet.id} color={handleColor(planet.name)}>
+          <PlanetContainer
+            key={planet.id}
+            to={`/${planet.name}`}
+            style={{ textDecoration: "none" }}
+            color={handleColor(planet.name)}
+          >
             {/* {console.log(toggleCol} */}
             <li className="planet__link">{planet.name}</li>
           </PlanetContainer>
@@ -36,21 +41,29 @@ function NavBar() {
             src={process.env.PUBLIC_URL + "/assets/icon-hamburger.svg"}
             alt=""
           />
-          {/* {console.log(opacity)} */}
         </HamburgerWrapper>
       </PlanetHamburger>
       <PlanetSidebar modalOpen={modalOpen}>
         {planets.map((planet) => (
           <ul>
-            <li key={planet.id} onClick={() => setModalOpen(false)}>
-              <Circle color={handleColor(planet.name)} />
-              {planet.name}
-              <Arrow
-                src={process.env.PUBLIC_URL + "/assets/icon-chevron.svg"}
-                alt=""
-              />
-            </li>
-            <hr />
+            <Link
+              key={planet.id}
+              to={`/${planet.name}`}
+              style={{ textDecoration: "none" }}
+              onClick={() =>
+                toggle() ? handleOpacity(opacity) : handleOpacity(1.3 - opacity)
+              }
+            >
+              <li key={planet.id} onClick={() => setModalOpen(false)}>
+                <Circle color={handleColor(planet.name)} />
+                {planet.name}
+                <Arrow
+                  src={process.env.PUBLIC_URL + "/assets/icon-chevron.svg"}
+                  alt=""
+                />
+              </li>
+              <hr />
+            </Link>
           </ul>
         ))}
       </PlanetSidebar>
@@ -129,7 +142,7 @@ const Planet = styled.div`
   }
 `;
 
-const PlanetContainer = styled.ul`
+const PlanetContainer = styled(Link)`
   display: none;
 
   @media ${(props) => props.theme.tablet} {

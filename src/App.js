@@ -8,7 +8,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import planet from "./data/planets.json";
+import planets from "./data/planets.json";
 import PlanetInfo from "./components/organisms/PlanetInfo";
 import styled from "styled-components";
 // Atomic Design Pattern
@@ -16,9 +16,28 @@ import styled from "styled-components";
 function App() {
   return (
     <>
-      <GlobalStyles />
-      <Navbar />
-      <PlanetInfo />
+      <Router>
+        <GlobalStyles />
+        <Navbar />
+        <Switch>
+          {planets.map((planet) => (
+            <Route path={`/${planet.name}`}>
+              <PlanetInfo
+                key={planet.id}
+                name={planet.name}
+                images={planet.images.planet}
+                content={planet.overview.content}
+                radius={planet.radius}
+                revolution={planet.revolution}
+                rotation={planet.rotation}
+                temperature={planet.temperature}
+                wikipedia={planet.overview.source}
+              />{" "}
+            </Route>
+          ))}
+          <Route path="/"></Route>
+        </Switch>
+      </Router>
     </>
   );
 }

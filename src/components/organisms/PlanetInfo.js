@@ -5,6 +5,7 @@ import planets from "../../data/planets.json";
 import PlanetMetrics from "../atoms/PlanetMetrics";
 import PlanetDescription from "../atoms/PlanetDescription";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   currentDescription,
   currentPlanet,
@@ -13,29 +14,40 @@ import {
   setCurrentDescription,
 } from "../../redux/planetReducer";
 
-function PlanetInfo({ id }) {
-  const description = useSelector(currentDescription);
-  const planetId = useSelector(currentPlanet);
-  const descriptionIndex = useSelector(currentDescriptionIndex);
-  const dispatch = useDispatch();
-
+function PlanetInfo({
+  images,
+  name,
+  content,
+  wikipedia,
+  rotation,
+  revolution,
+  radius,
+  temperature,
+}) {
   return (
     <InfoWrap>
       <TopSelect />
       <PlanetWrap>
         <ImageWrap>
           <img
-            src={planets[0].images.planet}
-            alt={planets.name}
+            rel="preload"
+            src={images}
+            alt={name}
             width="111px"
             height="111px"
           />
         </ImageWrap>
-        <PlanetDescription />
-        <PlanetMetrics />
-        {/* {planets.map((planet) => (
-        <World key={planet.id}>Hey Guys</World>
-      ))} */}
+        <PlanetDescription
+          name={name}
+          content={content}
+          wikipedia={wikipedia}
+        />
+        <PlanetMetrics
+          temperature={temperature}
+          radius={radius}
+          revolution={revolution}
+          rotation={rotation}
+        />
       </PlanetWrap>
     </InfoWrap>
   );
@@ -49,8 +61,6 @@ const InfoWrap = styled.div`
 const PlanetWrap = styled.div`
   font-size: 10px;
   color: white;
-  /* border: 1px solid red; */
-  /* background-image: none; */
   display: flex;
   flex-direction: column;
   align-items: center;

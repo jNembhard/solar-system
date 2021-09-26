@@ -3,18 +3,14 @@ import styled from "styled-components";
 import planets from "../../data/planets.json";
 import { setCurrentDescription } from "../../redux/planetReducer";
 
-function PlanetDescription() {
+function PlanetDescription({ name, content, wikipedia }) {
   return (
     <Description>
-      <h1>Mercury</h1>
-      <p>{planets[0].overview.content}</p>
+      <h1>{name}</h1>
+      <p>{content}</p>
       <div>
         Source :{" "}
-        <a
-          href={planets[0].overview.source}
-          target="_blank"
-          rel="noreferrer noreopener"
-        >
+        <a href={wikipedia} target="_blank" rel="noreferrer noopener">
           Wikipedia
         </a>
       </div>
