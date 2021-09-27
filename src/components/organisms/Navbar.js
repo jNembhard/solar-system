@@ -7,12 +7,16 @@ import { Link } from "react-router-dom";
 function NavBar() {
   const [modalOpen, setModalOpen] = useState(false);
   const [opacity, setOpacity] = useState(1);
-  const [active, setActive] = useState(false);
+  const [activeTab, setActiveTab] = useState(theme.mercury);
+
   const toggle = () => setModalOpen(!modalOpen);
-  const toggleColor = () => setActive(!active);
 
   const handleOpacity = (e) => {
     return setOpacity(e);
+  };
+
+  const handleTabs = () => {
+    setActiveTab(theme.mercury);
   };
 
   return (
@@ -27,7 +31,12 @@ function NavBar() {
             color={handleColor(planet.name)}
           >
             {/* {console.log(toggleCol} */}
-            <li className="planet__link">{planet.name}</li>
+            <li
+              className={activeTab === "Mercury" ? "active" : ""}
+              onClick={handleColor(planet.name)}
+            >
+              {planet.name}
+            </li>
           </PlanetContainer>
         ))}
       </Planet>
@@ -145,6 +154,10 @@ const Planet = styled.div`
 const PlanetContainer = styled(Link)`
   display: none;
 
+  li {
+    list-style-type: none;
+  }
+
   @media ${(props) => props.theme.tablet} {
     display: unset;
     margin: 0 16.5px 27px;
@@ -165,9 +178,6 @@ const PlanetContainer = styled(Link)`
       letter-spacing: 1px;
       list-style-type: none;
 
-      li {
-      }
-
       &:hover {
         padding-top: 70px;
         border-top: 5px solid ${(props) => props.color};
@@ -176,11 +186,16 @@ const PlanetContainer = styled(Link)`
           margin-top: -50px;
         }
       }
-    }
-  }
 
-  .planet__link {
-    list-style-type: none;
+      &.active {
+        padding-top: 70px;
+        border-top: 5px solid ${(props) => props.color};
+
+        li {
+          margin-top: -50px;
+        }
+      }
+    }
   }
 `;
 

@@ -1,5 +1,4 @@
 import "./App.css";
-import React, { Fragment } from "react";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import Navbar from "./components/organisms/Navbar";
 import {
@@ -10,7 +9,6 @@ import {
 } from "react-router-dom";
 import planets from "./data/planets.json";
 import PlanetInfo from "./components/organisms/PlanetInfo";
-import styled from "styled-components";
 // Atomic Design Pattern
 
 function App() {
@@ -25,17 +23,23 @@ function App() {
               <PlanetInfo
                 key={planet.id}
                 name={planet.name}
-                images={planet.images.planet}
-                content={planet.overview.content}
+                overviewContent={planet.overview.content}
+                structureContent={planet.structure.content}
+                geologyContent={planet.geology.content}
+                overviewWikipedia={planet.overview.source}
+                structureWikipedia={planet.structure.source}
+                geologyWikipedia={planet.geology.source}
                 radius={planet.radius}
                 revolution={planet.revolution}
                 rotation={planet.rotation}
                 temperature={planet.temperature}
-                wikipedia={planet.overview.source}
-              />{" "}
+                imagePlanet={planet.images.planet}
+                imageInternal={planet.images.internal}
+                imageZoom={planet.images.geology}
+              />
             </Route>
           ))}
-          <Route path="/"></Route>
+          <Redirect exact path="/" to="/Earth" />
         </Switch>
       </Router>
     </>

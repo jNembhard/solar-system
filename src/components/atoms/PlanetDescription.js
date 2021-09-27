@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import planets from "../../data/planets.json";
-import { setCurrentDescription } from "../../redux/planetReducer";
 
 function PlanetDescription({ name, content, wikipedia }) {
   return (

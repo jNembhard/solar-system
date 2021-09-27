@@ -1,24 +1,20 @@
 import React from "react";
-import TopSelect from "../atoms/TopSelect";
+import TopSelect from "../molecules/TopSelect";
 import styled from "styled-components";
-import planets from "../../data/planets.json";
 import PlanetMetrics from "../atoms/PlanetMetrics";
-import PlanetDescription from "../atoms/PlanetDescription";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import {
-  currentDescription,
-  currentPlanet,
-  currentPlanetIndex,
-  currentDescriptionIndex,
-  setCurrentDescription,
-} from "../../redux/planetReducer";
+// import PlanetDescription from "../atoms/PlanetDescription";
 
 function PlanetInfo({
-  images,
+  imagePlanet,
+  imageInternal,
+  imageZoom,
   name,
-  content,
-  wikipedia,
+  overviewContent,
+  structureContent,
+  geologyContent,
+  overviewWikipedia,
+  structureWikipedia,
+  geologyWikipedia,
   rotation,
   revolution,
   radius,
@@ -26,22 +22,19 @@ function PlanetInfo({
 }) {
   return (
     <InfoWrap>
-      <TopSelect />
+      <TopSelect
+        name={name}
+        imageInternal={imageInternal}
+        imagePlanet={imagePlanet}
+        imageZoom={imageZoom}
+        overviewContent={overviewContent}
+        geologyContent={geologyContent}
+        structureContent={structureContent}
+        overviewWikipedia={overviewWikipedia}
+        geologyWikipedia={geologyWikipedia}
+        structureWikipedia={structureWikipedia}
+      />
       <PlanetWrap>
-        <ImageWrap>
-          <img
-            rel="preload"
-            src={images}
-            alt={name}
-            width="111px"
-            height="111px"
-          />
-        </ImageWrap>
-        <PlanetDescription
-          name={name}
-          content={content}
-          wikipedia={wikipedia}
-        />
         <PlanetMetrics
           temperature={temperature}
           radius={radius}
@@ -57,8 +50,12 @@ export default PlanetInfo;
 
 const InfoWrap = styled.div`
   margin-bottom: 47px;
+  display: flex;
+  flex-direction: column;
 `;
+
 const PlanetWrap = styled.div`
+  margin-top: 400px;
   font-size: 10px;
   color: white;
   display: flex;
