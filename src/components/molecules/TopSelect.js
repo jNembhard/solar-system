@@ -15,6 +15,13 @@ function TopSelect({
   imageInternal,
   imageZoom,
   name,
+  smallPlanet,
+  mediumPlanet,
+  largePlanet,
+  temperature,
+  radius,
+  revolution,
+  rotation,
 }) {
   const [activeTab, setActiveTab] = useState("overview");
 
@@ -59,6 +66,11 @@ function TopSelect({
             name={name}
             overviewContent={overviewContent}
             overviewWikipedia={overviewWikipedia}
+            smallPlanet={smallPlanet}
+            temperature={temperature}
+            radius={radius}
+            revolution={revolution}
+            rotation={rotation}
           />
         ) : activeTab === "structure" ? (
           <BlurbTwo
@@ -66,13 +78,24 @@ function TopSelect({
             name={name}
             structureContent={structureContent}
             structureWikipedia={structureWikipedia}
+            smallPlanet={smallPlanet}
+            temperature={temperature}
+            radius={radius}
+            revolution={revolution}
+            rotation={rotation}
           />
         ) : activeTab === "surface" ? (
           <BlurbThree
+            imagePlanet={imagePlanet}
             imageZoom={imageZoom}
             name={name}
             geologyContent={geologyContent}
             geologyWikipedia={geologyWikipedia}
+            smallPlanet={smallPlanet}
+            temperature={temperature}
+            radius={radius}
+            revolution={revolution}
+            rotation={rotation}
           />
         ) : (
           ""

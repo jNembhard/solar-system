@@ -19,6 +19,9 @@ function PlanetInfo({
   revolution,
   radius,
   temperature,
+  smallPlanet,
+  mediumPlanet,
+  largePlanet,
 }) {
   return (
     <InfoWrap>
@@ -33,15 +36,14 @@ function PlanetInfo({
         overviewWikipedia={overviewWikipedia}
         geologyWikipedia={geologyWikipedia}
         structureWikipedia={structureWikipedia}
+        smallPlanet={smallPlanet}
+        mediumPlanet={mediumPlanet}
+        largePlanet={largePlanet}
+        temperature={temperature}
+        radius={radius}
+        revolution={revolution}
+        rotation={rotation}
       />
-      <PlanetWrap>
-        <PlanetMetrics
-          temperature={temperature}
-          radius={radius}
-          revolution={revolution}
-          rotation={rotation}
-        />
-      </PlanetWrap>
     </InfoWrap>
   );
 }
@@ -52,10 +54,16 @@ const InfoWrap = styled.div`
   margin-bottom: 47px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
 `;
 
 const PlanetWrap = styled.div`
-  margin-top: 400px;
+  /* margin-top: 400px; */
   font-size: 10px;
   color: white;
   display: flex;
@@ -65,5 +73,5 @@ const PlanetWrap = styled.div`
 `;
 
 const ImageWrap = styled.div`
-  margin: 95px 132px 98px;
+  /* margin: 95px 132px 98px; */
 `;

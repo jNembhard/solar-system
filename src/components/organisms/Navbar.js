@@ -15,10 +15,6 @@ function NavBar() {
     return setOpacity(e);
   };
 
-  const handleTabs = () => {
-    setActiveTab(theme.mercury);
-  };
-
   return (
     <Header>
       <h1>The Planets</h1>
@@ -30,13 +26,7 @@ function NavBar() {
             style={{ textDecoration: "none" }}
             color={handleColor(planet.name)}
           >
-            {/* {console.log(toggleCol} */}
-            <li
-              className={activeTab === "Mercury" ? "active" : ""}
-              onClick={handleColor(planet.name)}
-            >
-              {planet.name}
-            </li>
+            <li>{planet.name}</li>
           </PlanetContainer>
         ))}
       </Planet>
@@ -220,7 +210,7 @@ const PlanetSidebar = styled.div`
   bottom: 0;
   right: 0;
   left: 0;
-  width: 100%;
+  width: 98%;
   z-index: 10;
   padding: 20px;
   padding: 20px 50px 20px 30px;

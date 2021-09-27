@@ -36,6 +36,9 @@ function App() {
                 imagePlanet={planet.images.planet}
                 imageInternal={planet.images.internal}
                 imageZoom={planet.images.geology}
+                smallPlanet={planet.size.small}
+                mediumPlanet={planet.size.medium}
+                largePlanet={planet.size.large}
               />
             </Route>
           ))}

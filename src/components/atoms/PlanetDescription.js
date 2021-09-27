@@ -10,6 +10,10 @@ function PlanetDescription({ name, content, wikipedia }) {
         Source :{" "}
         <a href={wikipedia} target="_blank" rel="noreferrer noopener">
           Wikipedia
+          <img
+            src={process.env.PUBLIC_URL + "./assets/icon-source.svg"}
+            alt=""
+          />
         </a>
       </div>
     </Description>
@@ -21,8 +25,8 @@ export default PlanetDescription;
 const Description = styled.div`
   color: ${(props) => props.theme.fontColor};
   text-align: center;
-  height: 235px;
-  margin: 0 24px 28px;
+  margin-top: 20px;
+  margin-bottom: 28px;
 
   h1 {
     text-transform: uppercase;
@@ -35,6 +39,7 @@ const Description = styled.div`
     line-height: 22px;
     align-items: center;
     font-weight: ${(props) => props.theme.spartanRegular};
+    margin: 0 24px 32px;
   }
 
   div {
@@ -43,6 +48,10 @@ const Description = styled.div`
       color: ${(props) => props.theme.buttonOutline};
       line-height: 25px;
       font-weight: ${(props) => props.theme.spartanBold};
+      img {
+        margin-top: 4px;
+        margin-left: 4px;
+      }
     }
   }
 `;

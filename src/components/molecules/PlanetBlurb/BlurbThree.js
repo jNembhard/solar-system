@@ -1,24 +1,50 @@
 import React from "react";
 import styled from "styled-components";
 import PlanetDescription from "../../atoms/PlanetDescription";
+import PlanetMetrics from "../../atoms/PlanetMetrics";
 
-function BlurbThree({ geologyContent, geologyWikipedia, name, imageZoom }) {
+function BlurbThree({
+  geologyContent,
+  geologyWikipedia,
+  name,
+  imagePlanet,
+  imageZoom,
+  smallPlanet,
+  temperature,
+  radius,
+  revolution,
+  rotation,
+}) {
+  // const geologySize = {
+  //   large: "163px 199px",
+  //   medium: "80px 93.25px",
+  //   small: "50px 58.28px",
+  // };
   return (
     <BlurbWrap>
-      <ImageWrap>
-        <img
+      <PlanetWrap>
+        <PlanetImage
           rel="preload"
-          src={imageZoom}
+          src={imagePlanet}
           alt={name}
-          width="111px"
-          height="111px"
+          width={smallPlanet}
+          height={smallPlanet}
         />
-        <PlanetDescription
-          name={name}
-          content={geologyContent}
-          wikipedia={geologyWikipedia}
+        <PlanetZoom src={imageZoom} alt="" />
+        <DescriptionWrap>
+          <PlanetDescription
+            name={name}
+            content={geologyContent}
+            wikipedia={geologyWikipedia}
+          />
+        </DescriptionWrap>
+        <PlanetMetrics
+          temperature={temperature}
+          radius={radius}
+          revolution={revolution}
+          rotation={rotation}
         />
-      </ImageWrap>
+      </PlanetWrap>
     </BlurbWrap>
   );
 }
@@ -34,8 +60,29 @@ const BlurbWrap = styled.div`
   justify-content: center;
 `;
 
-const ImageWrap = styled.div`
-  img {
-    margin: 47.5px 132px 0;
-  }
+const PlanetImage = styled.img`
+  position: relative;
+  margin: 47.5px 132px 0;
+`;
+
+const PlanetZoom = styled.img`
+  position: absolute;
+  bottom: 320px;
+  width: 55px;
+  height: 58.28px;
+  background-color: transparent;
+`;
+
+const PlanetWrap = styled.div`
+  margin: 0 0 47px;
+  font-size: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const DescriptionWrap = styled.div`
+  margin: 0 24px;
 `;
