@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 function NavBar() {
   const [modalOpen, setModalOpen] = useState(false);
   const [opacity, setOpacity] = useState(1);
-  const [activeTab, setActiveTab] = useState(theme.mercury);
 
   const toggle = () => setModalOpen(!modalOpen);
 

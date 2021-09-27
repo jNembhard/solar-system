@@ -7,6 +7,8 @@ function BlurbTwo({
   imageInternal,
   name,
   smallPlanet,
+  mediumPlanet,
+  largePlanet,
   structureContent,
   structureWikipedia,
   temperature,
@@ -17,13 +19,29 @@ function BlurbTwo({
   return (
     <BlurbWrap>
       <PlanetWrap>
-        <img
-          rel="preload"
-          src={imageInternal}
-          alt={name}
-          width={smallPlanet}
-          height={smallPlanet}
-        />
+        <picture>
+          <source
+            media="(min-width: 992px)"
+            srcset={imageInternal}
+            alt={name}
+            width={largePlanet}
+            height={largePlanet}
+          />
+          <source
+            media="(min-width: 767px)"
+            srcset={imageInternal}
+            alt={name}
+            width={mediumPlanet}
+            height={mediumPlanet}
+          />
+          <img
+            rel="preload"
+            src={imageInternal}
+            alt={name}
+            width={smallPlanet}
+            height={smallPlanet}
+          />
+        </picture>
         <PlanetDescription
           name={name}
           content={structureContent}
@@ -59,4 +77,21 @@ const PlanetWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  picture {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 256px;
+    height: 256px;
+  }
+
+  @media ${(props) => props.theme.tablet} {
+    margin: unset;
+
+    picture {
+      width: 422px;
+      height: 422px;
+    }
+  }
 `;

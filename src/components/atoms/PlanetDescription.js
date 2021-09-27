@@ -25,13 +25,22 @@ export default PlanetDescription;
 const Description = styled.div`
   color: ${(props) => props.theme.fontColor};
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 28px;
+  margin: 20px 0 28px;
+
+  @media ${(props) => props.theme.tablet} {
+    text-align: left;
+  }
 
   h1 {
     text-transform: uppercase;
     font-size: 40px;
     margin-bottom: 16px;
+
+    @media ${(props) => props.theme.tablet} {
+      font-size: 48px;
+      margin-bottom: 24px;
+      margin-left: 39px;
+    }
   }
 
   p {
@@ -40,10 +49,19 @@ const Description = styled.div`
     align-items: center;
     font-weight: ${(props) => props.theme.spartanRegular};
     margin: 0 24px 32px;
+
+    @media ${(props) => props.theme.tablet} {
+      margin: 0 390px 32px 39px;
+    }
   }
 
   div {
     font-size: 12px;
+
+    @media ${(props) => props.theme.tablet} {
+      margin-left: 39px;
+    }
+
     a {
       color: ${(props) => props.theme.buttonOutline};
       line-height: 25px;

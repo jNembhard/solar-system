@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import planets from "../../data/planets.json";
 
 function PlanetMetrics({ temperature, radius, revolution, rotation }) {
   const blocks = [
@@ -28,6 +27,10 @@ export default PlanetMetrics;
 const Metrics = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media ${(props) => props.theme.tablet} {
+    flex-direction: row;
+  }
 `;
 
 const MetricContainer = styled.div`
@@ -41,6 +44,14 @@ const MetricContainer = styled.div`
   margin: 4px 0;
   background-image: none;
 
+  @media ${(props) => props.theme.tablet} {
+    width: 164px;
+    height: 88px;
+    display: unset;
+    flex-direction: column;
+    margin: 0 5.5px;
+  }
+
   p {
     position: relative;
     font-size: 8px;
@@ -50,6 +61,12 @@ const MetricContainer = styled.div`
     font-weight: ${(props) => props.theme.spartanBold};
     margin-left: 24px;
     background-image: none;
+
+    @media ${(props) => props.theme.tablet} {
+      margin: 16px 16px 0;
+      letter-spacing: 0.73px;
+      line-height: 16px;
+    }
 
     span {
       position: absolute;
@@ -64,6 +81,17 @@ const MetricContainer = styled.div`
       left: 190px;
       height: 100%;
       text-align: right;
+
+      @media ${(props) => props.theme.tablet} {
+        font-size: 24px;
+        letter-spacing: -0.9px;
+        height: 110%;
+        width: 100px;
+        top: 38px;
+        left: 0;
+        bottom: 19px;
+        text-align: left;
+      }
     }
   }
 `;

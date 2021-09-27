@@ -9,6 +9,8 @@ function BlurbOne({
   overviewContent,
   overviewWikipedia,
   smallPlanet,
+  mediumPlanet,
+  largePlanet,
   temperature,
   radius,
   revolution,
@@ -17,13 +19,29 @@ function BlurbOne({
   return (
     <BlurbWrap>
       <PlanetWrap>
-        <img
-          rel="preload"
-          src={imagePlanet}
-          alt={name}
-          width={smallPlanet}
-          height={smallPlanet}
-        />
+        <picture>
+          <source
+            media="(min-width: 992px)"
+            srcset={imagePlanet}
+            alt={name}
+            width={largePlanet}
+            height={largePlanet}
+          />
+          <source
+            media="(min-width: 767px)"
+            srcset={imagePlanet}
+            alt={name}
+            width={mediumPlanet}
+            height={mediumPlanet}
+          />
+          <img
+            rel="preload"
+            src={imagePlanet}
+            alt={name}
+            width={smallPlanet}
+            height={smallPlanet}
+          />
+        </picture>
         <PlanetDescription
           name={name}
           content={overviewContent}
@@ -55,4 +73,22 @@ const PlanetWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  picture {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 256px;
+    height: 256px;
+  }
+
+  @media ${(props) => props.theme.tablet} {
+    margin: unset;
+
+    picture {
+      width: 422px;
+      height: 422px;
+      /* border: 1px solid red; */
+    }
+  }
 `;

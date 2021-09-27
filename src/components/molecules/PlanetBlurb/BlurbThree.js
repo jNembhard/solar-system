@@ -10,6 +10,8 @@ function BlurbThree({
   imagePlanet,
   imageZoom,
   smallPlanet,
+  mediumPlanet,
+  largePlanet,
   temperature,
   radius,
   revolution,
@@ -17,19 +19,33 @@ function BlurbThree({
 }) {
   // const geologySize = {
   //   large: "163px 199px",
-  //   medium: "80px 93.25px",
-  //   small: "50px 58.28px",
-  // };
+
   return (
     <BlurbWrap>
       <PlanetWrap>
-        <PlanetImage
-          rel="preload"
-          src={imagePlanet}
-          alt={name}
-          width={smallPlanet}
-          height={smallPlanet}
-        />
+        <PlanetImage>
+          <source
+            media="(min-width: 992px)"
+            srcset={imagePlanet}
+            alt={name}
+            width={largePlanet}
+            height={largePlanet}
+          />
+          <source
+            media="(min-width: 767px)"
+            srcset={imagePlanet}
+            alt={name}
+            width={mediumPlanet}
+            height={mediumPlanet}
+          />
+          <img
+            rel="preload"
+            src={imagePlanet}
+            alt={name}
+            width={smallPlanet}
+            height={smallPlanet}
+          />
+        </PlanetImage>
         <PlanetZoom src={imageZoom} alt="" />
         <DescriptionWrap>
           <PlanetDescription
@@ -60,9 +76,8 @@ const BlurbWrap = styled.div`
   justify-content: center;
 `;
 
-const PlanetImage = styled.img`
+const PlanetImage = styled.picture`
   position: relative;
-  margin: 47.5px 132px 0;
 `;
 
 const PlanetZoom = styled.img`
@@ -71,6 +86,13 @@ const PlanetZoom = styled.img`
   width: 55px;
   height: 58.28px;
   background-color: transparent;
+
+  @media ${(props) => props.theme.tablet} {
+    bottom: 0;
+    top: 250px;
+    width: 103px;
+    height: 113.5px;
+  }
 `;
 
 const PlanetWrap = styled.div`
@@ -81,8 +103,25 @@ const PlanetWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  picture {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 256px;
+    height: 256px;
+  }
+
+  @media ${(props) => props.theme.tablet} {
+    margin: unset;
+
+    picture {
+      width: 422px;
+      height: 422px;
+    }
+  }
 `;
 
 const DescriptionWrap = styled.div`
-  margin: 0 24px;
+  /* border: 1px solid red; */
 `;
