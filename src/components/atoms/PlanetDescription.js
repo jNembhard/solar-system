@@ -29,6 +29,9 @@ const Description = styled.div`
 
   @media ${(props) => props.theme.tablet} {
     text-align: left;
+
+    @media ${(props) => props.theme.desktop} {
+    }
   }
 
   h1 {
@@ -40,10 +43,16 @@ const Description = styled.div`
       font-size: 48px;
       margin-bottom: 24px;
       margin-left: 39px;
+
+      @media ${(props) => props.theme.desktop} {
+        font-size: 80px;
+        margin-left: 150px;
+      }
     }
   }
 
   p {
+    font-size: 11px;
     margin-bottom: 32px;
     line-height: 22px;
     align-items: center;
@@ -52,6 +61,14 @@ const Description = styled.div`
 
     @media ${(props) => props.theme.tablet} {
       margin: 0 390px 32px 39px;
+
+      @media ${(props) => props.theme.desktop} {
+        font-size: 14px;
+        line-height: 25px;
+        width: 400px;
+        height: 180px;
+        margin: 0 0 32px 150px;
+      }
     }
   }
 
@@ -60,6 +77,10 @@ const Description = styled.div`
 
     @media ${(props) => props.theme.tablet} {
       margin-left: 39px;
+
+      @media ${(props) => props.theme.desktop} {
+        margin: -20px 0 39px 150px;
+      }
     }
 
     a {

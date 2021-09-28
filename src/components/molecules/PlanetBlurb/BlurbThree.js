@@ -17,43 +17,41 @@ function BlurbThree({
   revolution,
   rotation,
 }) {
-  // const geologySize = {
-  //   large: "163px 199px",
-
   return (
     <BlurbWrap>
       <PlanetWrap>
-        <PlanetImage>
-          <source
-            media="(min-width: 992px)"
-            srcset={imagePlanet}
-            alt={name}
-            width={largePlanet}
-            height={largePlanet}
-          />
-          <source
-            media="(min-width: 767px)"
-            srcset={imagePlanet}
-            alt={name}
-            width={mediumPlanet}
-            height={mediumPlanet}
-          />
-          <img
-            rel="preload"
-            src={imagePlanet}
-            alt={name}
-            width={smallPlanet}
-            height={smallPlanet}
-          />
-        </PlanetImage>
-        <PlanetZoom src={imageZoom} alt="" />
-        <DescriptionWrap>
+        <InfoWrap>
+          <PlanetImage>
+            <source
+              media="(min-width: 992px)"
+              srcset={imagePlanet}
+              alt={name}
+              width={largePlanet}
+              height={largePlanet}
+            />
+            <source
+              media="(min-width: 767px)"
+              srcset={imagePlanet}
+              alt={name}
+              width={mediumPlanet}
+              height={mediumPlanet}
+            />
+            <img
+              rel="preload"
+              src={imagePlanet}
+              alt={name}
+              width={smallPlanet}
+              height={smallPlanet}
+            />
+          </PlanetImage>
+          <PlanetZoom src={imageZoom} alt="" />
+
           <PlanetDescription
             name={name}
             content={geologyContent}
             wikipedia={geologyWikipedia}
           />
-        </DescriptionWrap>
+        </InfoWrap>
         <PlanetMetrics
           temperature={temperature}
           radius={radius}
@@ -92,6 +90,15 @@ const PlanetZoom = styled.img`
     top: 250px;
     width: 103px;
     height: 113.5px;
+
+    @media ${(props) => props.theme.desktop} {
+      width: 163px;
+      height: 199px;
+      top: 400px;
+      right: 878px;
+      bottom: 271px;
+      left: 259px;
+    }
   }
 `;
 
@@ -99,6 +106,13 @@ const PlanetWrap = styled.div`
   margin: 0 0 47px;
   font-size: 10px;
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const InfoWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -119,9 +133,14 @@ const PlanetWrap = styled.div`
       width: 422px;
       height: 422px;
     }
-  }
-`;
 
-const DescriptionWrap = styled.div`
-  /* border: 1px solid red; */
+    @media ${(props) => props.theme.desktop} {
+      flex-direction: row;
+      picture {
+        width: 666px;
+        height: 666px;
+        background-color: transparent;
+      }
+    }
+  }
 `;

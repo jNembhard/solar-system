@@ -50,6 +50,12 @@ const MetricContainer = styled.div`
     display: unset;
     flex-direction: column;
     margin: 0 5.5px;
+
+    @media ${(props) => props.theme.desktop} {
+      width: 255px;
+      height: 128px;
+      margin: 87px 15px 0;
+    }
   }
 
   p {
@@ -66,6 +72,10 @@ const MetricContainer = styled.div`
       margin: 16px 16px 0;
       letter-spacing: 0.73px;
       line-height: 16px;
+
+      @media ${(props) => props.theme.desktop} {
+        font-size: 11px;
+      }
     }
 
     span {
@@ -91,6 +101,13 @@ const MetricContainer = styled.div`
         left: 0;
         bottom: 19px;
         text-align: left;
+
+        @media ${(props) => props.theme.desktop} {
+          font-size: 40px;
+          letter-spacing: -1.5px;
+          width: 180px;
+          top: 42px;
+        }
       }
     }
   }

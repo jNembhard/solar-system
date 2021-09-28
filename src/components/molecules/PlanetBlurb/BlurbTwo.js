@@ -19,34 +19,37 @@ function BlurbTwo({
   return (
     <BlurbWrap>
       <PlanetWrap>
-        <picture>
-          <source
-            media="(min-width: 992px)"
-            srcset={imageInternal}
-            alt={name}
-            width={largePlanet}
-            height={largePlanet}
+        <InfoWrap>
+          <picture>
+            <source
+              media="(min-width: 992px)"
+              srcset={imageInternal}
+              alt={name}
+              width={largePlanet}
+              height={largePlanet}
+            />
+            <source
+              media="(min-width: 767px)"
+              srcset={imageInternal}
+              alt={name}
+              width={mediumPlanet}
+              height={mediumPlanet}
+            />
+            <img
+              rel="preload"
+              src={imageInternal}
+              alt={name}
+              width={smallPlanet}
+              height={smallPlanet}
+            />
+          </picture>
+
+          <PlanetDescription
+            name={name}
+            content={structureContent}
+            wikipedia={structureWikipedia}
           />
-          <source
-            media="(min-width: 767px)"
-            srcset={imageInternal}
-            alt={name}
-            width={mediumPlanet}
-            height={mediumPlanet}
-          />
-          <img
-            rel="preload"
-            src={imageInternal}
-            alt={name}
-            width={smallPlanet}
-            height={smallPlanet}
-          />
-        </picture>
-        <PlanetDescription
-          name={name}
-          content={structureContent}
-          wikipedia={structureWikipedia}
-        />
+        </InfoWrap>
         <PlanetMetrics
           temperature={temperature}
           radius={radius}
@@ -77,6 +80,13 @@ const PlanetWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`;
+
+const InfoWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
   picture {
     display: inline-flex;
@@ -92,6 +102,16 @@ const PlanetWrap = styled.div`
     picture {
       width: 422px;
       height: 422px;
+    }
+
+    @media ${(props) => props.theme.desktop} {
+      flex-direction: row;
+
+      picture {
+        width: 666px;
+        height: 666px;
+        background-color: transparent;
+      }
     }
   }
 `;

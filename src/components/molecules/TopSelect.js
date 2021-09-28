@@ -167,6 +167,12 @@ const ListWrap = styled.div`
     top: 516px;
     right: 24px;
     left: 447px;
+
+    @media ${(props) => props.theme.desktop} {
+      top: 527px;
+      right: 165px;
+      left: 925px;
+    }
   }
 
   li {
@@ -185,12 +191,22 @@ const ListWrap = styled.div`
       color: ${(props) => props.theme.fontColor};
       margin-bottom: 12px;
       background: transparent;
+      font-size: 9px;
+      line-height: 25px;
+      letter-spacing: 1.93px;
+
+      @media ${(props) => props.theme.desktop} {
+        font-size: 12px;
+        line-height: 25px;
+        letter-spacing: 2.57px;
+        width: 350px;
+        height: 48px;
+      }
 
       &:before {
         content: "0" counter(custom-counter-style);
         margin: 0 14px 0 20px;
         color: ${(props) => props.theme.buttonOutline};
-        /* color: ${PlanetColors}; */
       }
     }
 
@@ -216,8 +232,6 @@ const ListWrap = styled.div`
 
       @media ${(props) => props.theme.tablet} {
         border-bottom: unset;
-        /* border: 1px solid ${(props) => props.theme.mercury}; */
-        /* background-color: ${(props) => props.theme.venus};*/
         background-color: ${PlanetColors};
         margin-top: unset;
         padding-bottom: unset;
@@ -226,6 +240,7 @@ const ListWrap = styled.div`
 
     span {
       display: none;
+
       @media ${(props) => props.theme.tablet} {
         display: unset;
         padding-right: 5px;

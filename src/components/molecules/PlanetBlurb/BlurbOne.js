@@ -19,34 +19,36 @@ function BlurbOne({
   return (
     <BlurbWrap>
       <PlanetWrap>
-        <picture>
-          <source
-            media="(min-width: 992px)"
-            srcset={imagePlanet}
-            alt={name}
-            width={largePlanet}
-            height={largePlanet}
+        <InfoWrap>
+          <picture>
+            <source
+              media="(min-width: 992px)"
+              srcset={imagePlanet}
+              alt={name}
+              width={largePlanet}
+              height={largePlanet}
+            />
+            <source
+              media="(min-width: 767px)"
+              srcset={imagePlanet}
+              alt={name}
+              width={mediumPlanet}
+              height={mediumPlanet}
+            />
+            <img
+              rel="preload"
+              src={imagePlanet}
+              alt={name}
+              width={smallPlanet}
+              height={smallPlanet}
+            />
+          </picture>
+          <PlanetDescription
+            name={name}
+            content={overviewContent}
+            wikipedia={overviewWikipedia}
           />
-          <source
-            media="(min-width: 767px)"
-            srcset={imagePlanet}
-            alt={name}
-            width={mediumPlanet}
-            height={mediumPlanet}
-          />
-          <img
-            rel="preload"
-            src={imagePlanet}
-            alt={name}
-            width={smallPlanet}
-            height={smallPlanet}
-          />
-        </picture>
-        <PlanetDescription
-          name={name}
-          content={overviewContent}
-          wikipedia={overviewWikipedia}
-        />
+        </InfoWrap>
         <PlanetMetrics
           temperature={temperature}
           radius={radius}
@@ -63,6 +65,10 @@ export default BlurbOne;
 const BlurbWrap = styled.div`
   font-size: 10px;
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const PlanetWrap = styled.div`
@@ -73,7 +79,13 @@ const PlanetWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`;
 
+const InfoWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   picture {
     display: inline-flex;
     align-items: center;
@@ -88,7 +100,15 @@ const PlanetWrap = styled.div`
     picture {
       width: 422px;
       height: 422px;
-      /* border: 1px solid red; */
+    }
+
+    @media ${(props) => props.theme.desktop} {
+      flex-direction: row;
+      picture {
+        width: 666px;
+        height: 666px;
+        background-color: transparent;
+      }
     }
   }
 `;

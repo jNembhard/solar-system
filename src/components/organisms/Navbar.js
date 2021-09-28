@@ -153,25 +153,33 @@ const PlanetContainer = styled(Link)`
     color: ${(props) => props.theme.fontColor};
     cursor: pointer;
     letter-spacing: 1px;
+    line-height: 25px;
     opacity: 0.6;
 
     &:hover {
       color: ${(props) => props.theme.fontColor};
+      border-bottom: 5px solid ${(props) => props.color};
       opacity: unset;
+
+      li {
+        line-height: 25px;
+        margin-top: -5px;
+      }
     }
 
     @media ${(props) => props.theme.laptop} {
       margin: unset;
       margin-right: 33px;
-      line-height: 25px;
-      letter-spacing: 1px;
       list-style-type: none;
 
       &:hover {
+        border-bottom: unset;
         padding-top: 70px;
         border-top: 5px solid ${(props) => props.color};
 
         li {
+          margin-top: 0;
+          line-height: unset;
           margin-top: -50px;
         }
       }
@@ -211,7 +219,6 @@ const PlanetSidebar = styled.div`
   left: 0;
   width: 98%;
   z-index: 10;
-  padding: 20px;
   padding: 20px 50px 20px 30px;
   transform: ${(props) =>
     props.modalOpen ? "translateX(0)" : "translateX(100%)"};
@@ -223,6 +230,7 @@ const PlanetSidebar = styled.div`
   @media ${(props) => props.theme.tablet} {
     display: none;
   }
+
   ul {
     list-style: none;
 
