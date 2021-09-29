@@ -86,6 +86,7 @@ const InfoWrap = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   picture {
     display: inline-flex;
     align-items: center;
@@ -102,8 +103,9 @@ const InfoWrap = styled.div`
       height: 422px;
     }
 
-    @media ${(props) => props.theme.desktop} {
+    @media ${(props) => props.theme.laptop} {
       flex-direction: row;
+
       picture {
         width: 666px;
         height: 666px;

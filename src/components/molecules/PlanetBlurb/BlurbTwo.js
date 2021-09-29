@@ -104,7 +104,7 @@ const InfoWrap = styled.div`
       height: 422px;
     }
 
-    @media ${(props) => props.theme.desktop} {
+    @media ${(props) => props.theme.laptop} {
       flex-direction: row;
 
       picture {

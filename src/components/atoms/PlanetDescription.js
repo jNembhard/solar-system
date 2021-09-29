@@ -29,9 +29,6 @@ const Description = styled.div`
 
   @media ${(props) => props.theme.tablet} {
     text-align: left;
-
-    @media ${(props) => props.theme.desktop} {
-    }
   }
 
   h1 {
@@ -44,9 +41,13 @@ const Description = styled.div`
       margin-bottom: 24px;
       margin-left: 39px;
 
-      @media ${(props) => props.theme.desktop} {
+      @media ${(props) => props.theme.laptop} {
         font-size: 80px;
-        margin-left: 150px;
+        margin-left: 35px;
+
+        @media ${(props) => props.theme.desktop} {
+          margin-left: 150px;
+        }
       }
     }
   }
@@ -62,12 +63,16 @@ const Description = styled.div`
     @media ${(props) => props.theme.tablet} {
       margin: 0 390px 32px 39px;
 
-      @media ${(props) => props.theme.desktop} {
+      @media ${(props) => props.theme.laptop} {
         font-size: 14px;
-        line-height: 25px;
         width: 400px;
         height: 180px;
-        margin: 0 0 32px 150px;
+        margin: 0 0 32px 35px;
+
+        @media ${(props) => props.theme.desktop} {
+          line-height: 25px;
+          margin: 0 0 32px 150px;
+        }
       }
     }
   }
@@ -78,8 +83,12 @@ const Description = styled.div`
     @media ${(props) => props.theme.tablet} {
       margin-left: 39px;
 
-      @media ${(props) => props.theme.desktop} {
-        margin: -20px 0 39px 150px;
+      @media ${(props) => props.theme.laptop} {
+        margin: -35px 0 45px 35px;
+
+        @media ${(props) => props.theme.desktop} {
+          margin: -20px 0 39px 150px;
+        }
       }
     }
 
@@ -87,6 +96,7 @@ const Description = styled.div`
       color: ${(props) => props.theme.buttonOutline};
       line-height: 25px;
       font-weight: ${(props) => props.theme.spartanBold};
+
       img {
         margin-top: 4px;
         margin-left: 4px;

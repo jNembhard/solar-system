@@ -51,10 +51,16 @@ const MetricContainer = styled.div`
     flex-direction: column;
     margin: 0 5.5px;
 
-    @media ${(props) => props.theme.desktop} {
-      width: 255px;
-      height: 128px;
-      margin: 87px 15px 0;
+    @media ${(props) => props.theme.laptop} {
+      width: 235px;
+      height: 100px;
+      margin: 60px 12px 0;
+
+      @media ${(props) => props.theme.desktop} {
+        width: 255px;
+        height: 128px;
+        margin: 87px 15px 0;
+      }
     }
   }
 
@@ -73,7 +79,7 @@ const MetricContainer = styled.div`
       letter-spacing: 0.73px;
       line-height: 16px;
 
-      @media ${(props) => props.theme.desktop} {
+      @media ${(props) => props.theme.laptop} {
         font-size: 11px;
       }
     }
@@ -102,11 +108,15 @@ const MetricContainer = styled.div`
         bottom: 19px;
         text-align: left;
 
-        @media ${(props) => props.theme.desktop} {
-          font-size: 40px;
+        @media ${(props) => props.theme.laptop} {
+          font-size: 35px;
           letter-spacing: -1.5px;
           width: 180px;
           top: 42px;
+
+          @media ${(props) => props.theme.desktop} {
+            font-size: 40px;
+          }
         }
       }
     }

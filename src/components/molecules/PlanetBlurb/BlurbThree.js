@@ -91,13 +91,18 @@ const PlanetZoom = styled.img`
     width: 103px;
     height: 113.5px;
 
-    @media ${(props) => props.theme.desktop} {
-      width: 163px;
-      height: 199px;
+    @media ${(props) => props.theme.laptop} {
+      width: 133px;
+      height: 159px;
       top: 400px;
-      right: 878px;
-      bottom: 271px;
       left: 259px;
+
+      @media ${(props) => props.theme.desktop} {
+        width: 163px;
+        height: 199px;
+        right: 878px;
+        bottom: 271px;
+      }
     }
   }
 `;
@@ -134,8 +139,9 @@ const InfoWrap = styled.div`
       height: 422px;
     }
 
-    @media ${(props) => props.theme.desktop} {
+    @media ${(props) => props.theme.laptop} {
       flex-direction: row;
+
       picture {
         width: 666px;
         height: 666px;
