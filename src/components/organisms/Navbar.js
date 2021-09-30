@@ -25,7 +25,9 @@ function NavBar() {
             style={{ textDecoration: "none" }}
             color={handleColor(planet.name)}
           >
-            <li>{planet.name}</li>
+            <ul>
+              <li>{planet.name}</li>
+            </ul>
           </PlanetContainer>
         ))}
       </Planet>

@@ -3,7 +3,6 @@ import AntonioMedium from "./fonts/Antonio-Medium.ttf";
 import SpartanRegular from "./fonts/Spartan-Regular.ttf";
 import SpartanBold from "./fonts/Spartan-Bold.ttf";
 import { theme } from "./theme";
-// import styled from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
   body {
