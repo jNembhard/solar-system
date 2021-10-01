@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useMediaQuery } from "../atoms/hooks/useMediaQuery";
 import styled from "styled-components";
 import BlurbOne from "../molecules/PlanetBlurb/BlurbOne";
 import BlurbTwo from "../molecules/PlanetBlurb/BlurbTwo";
@@ -26,6 +27,7 @@ function PlanetInfo({
 }) {
   const [activeTab, setActiveTab] = useState("overview");
   const [colorShift, setColorShift] = useState("first");
+  const isScreenSize767 = useMediaQuery("(min-width: 767px)");
 
   const handleOverview = () => {
     setActiveTab("overview");
@@ -65,6 +67,18 @@ function PlanetInfo({
     }
   };
 
+  const styles = {
+    container: (isScreenSize767) => ({
+      backgroundColor: isScreenSize767
+        ? `${handlePlanetColors(name)}`
+        : "transparent",
+      borderColor: isScreenSize767 ? `${handlePlanetColors(name)}` : "",
+      borderBottom: isScreenSize767
+        ? "none"
+        : `5px solid ${handlePlanetColors(name)}`,
+    }),
+  };
+
   return (
     <TopWrap>
       <Top>
@@ -74,12 +88,7 @@ function PlanetInfo({
               className={activeTab === "overview" ? "active" : ""}
               onClick={handleOverview}
               style={
-                colorShift === "first"
-                  ? {
-                      // backgroundColor: handlePlanetColors(name),
-                      borderBottom: `5px solid ${handlePlanetColors(name)}`,
-                    }
-                  : {}
+                colorShift === "first" ? styles.container(isScreenSize767) : {}
               }
             >
               overview
@@ -88,12 +97,7 @@ function PlanetInfo({
               className={activeTab === "structure" ? "active" : ""}
               onClick={handleStructure}
               style={
-                colorShift === "second"
-                  ? {
-                      // backgroundColor: handlePlanetColors(name),
-                      borderBottom: `5px solid ${handlePlanetColors(name)}`,
-                    }
-                  : {}
+                colorShift === "second" ? styles.container(isScreenSize767) : {}
               }
             >
               <span>internal</span> structure
@@ -102,15 +106,10 @@ function PlanetInfo({
               className={activeTab === "surface" ? "active" : ""}
               onClick={handleSurface}
               style={
-                colorShift === "third"
-                  ? {
-                      // backgroundColor: handlePlanetColors(name),
-                      borderBottom: `5px solid ${handlePlanetColors(name)}`,
-                    }
-                  : {}
+                colorShift === "third" ? styles.container(isScreenSize767) : {}
               }
             >
-              surface <span style={{ "padding-left": "5px" }}>geology</span>
+              surface <span style={{ paddingLeft: "5px" }}>geology</span>
             </li>
           </ul>
         </ListWrap>
@@ -196,8 +195,10 @@ const ListWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  border-bottom: 1px solid ${(props) => props.theme.default};
 
   @media ${(props) => props.theme.tablet} {
+    border-bottom: unset;
     flex-direction: column;
     position: absolute;
     background-color: transparent;
@@ -277,7 +278,6 @@ const ListWrap = styled.div`
       }
 
       &.active {
-        /* border-bottom: 5px solid ${(props) => props.theme.mercury}; */
         margin-top: 23px;
         padding-bottom: 18px;
         color: ${(props) => props.theme.fontColor};

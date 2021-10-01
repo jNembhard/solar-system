@@ -23,14 +23,14 @@ function BlurbOne({
           <picture>
             <source
               media="(min-width: 992px)"
-              srcset={imagePlanet}
+              srcSet={imagePlanet}
               alt={name}
               width={largePlanet}
               height={largePlanet}
             />
             <source
               media="(min-width: 767px)"
-              srcset={imagePlanet}
+              srcSet={imagePlanet}
               alt={name}
               width={mediumPlanet}
               height={mediumPlanet}

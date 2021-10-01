@@ -24,14 +24,14 @@ function BlurbThree({
           <PlanetImage>
             <source
               media="(min-width: 992px)"
-              srcset={imagePlanet}
+              srcSet={imagePlanet}
               alt={name}
               width={largePlanet}
               height={largePlanet}
             />
             <source
               media="(min-width: 767px)"
-              srcset={imagePlanet}
+              srcSet={imagePlanet}
               alt={name}
               width={mediumPlanet}
               height={mediumPlanet}
@@ -76,32 +76,37 @@ const BlurbWrap = styled.div`
 
 const PlanetImage = styled.picture`
   position: relative;
+  bottom: -25px;
 `;
 
 const PlanetZoom = styled.img`
   position: absolute;
-  bottom: 320px;
-  width: 55px;
-  height: 58.28px;
+  width: 85px;
+  height: 95px;
+  bottom: 40%;
   background-color: transparent;
 
-  @media ${(props) => props.theme.tablet} {
-    bottom: 0;
-    top: 250px;
-    width: 103px;
-    height: 113.5px;
+  @media (min-width: 414px) {
+    bottom: 55%;
 
-    @media ${(props) => props.theme.laptop} {
-      width: 133px;
-      height: 159px;
-      top: 400px;
-      left: 259px;
+    @media ${(props) => props.theme.tablet} {
+      bottom: 0;
+      top: 250px;
+      width: 163px;
+      height: 199px;
 
-      @media ${(props) => props.theme.desktop} {
+      @media ${(props) => props.theme.laptop} {
         width: 163px;
         height: 199px;
-        right: 878px;
-        bottom: 271px;
+        top: 400px;
+        left: 259px;
+
+        @media ${(props) => props.theme.desktop} {
+          width: 163px;
+          height: 199px;
+          right: 878px;
+          bottom: 271px;
+        }
       }
     }
   }
@@ -133,6 +138,7 @@ const InfoWrap = styled.div`
 
   @media ${(props) => props.theme.tablet} {
     margin: unset;
+    margin-bottom: 28px;
 
     picture {
       width: 422px;

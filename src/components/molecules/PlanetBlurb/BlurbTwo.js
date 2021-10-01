@@ -23,14 +23,14 @@ function BlurbTwo({
           <picture>
             <source
               media="(min-width: 992px)"
-              srcset={imageInternal}
+              srcSet={imageInternal}
               alt={name}
               width={largePlanet}
               height={largePlanet}
             />
             <source
               media="(min-width: 767px)"
-              srcset={imageInternal}
+              srcSet={imageInternal}
               alt={name}
               width={mediumPlanet}
               height={mediumPlanet}
