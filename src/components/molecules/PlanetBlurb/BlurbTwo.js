@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PlanetDescription from "../../atoms/PlanetDescription";
 import PlanetMetrics from "../../atoms/PlanetMetrics";
+import { motion, AnimatePresence } from "framer-motion";
 
 function BlurbTwo({
   imageInternal,
@@ -17,47 +18,53 @@ function BlurbTwo({
   rotation,
 }) {
   return (
-    <BlurbWrap>
-      <PlanetWrap>
-        <InfoWrap>
-          <picture>
-            <source
-              media="(min-width: 992px)"
-              srcSet={imageInternal}
-              alt={name}
-              width={largePlanet}
-              height={largePlanet}
-            />
-            <source
-              media="(min-width: 767px)"
-              srcSet={imageInternal}
-              alt={name}
-              width={mediumPlanet}
-              height={mediumPlanet}
-            />
-            <img
-              rel="preload"
-              src={imageInternal}
-              alt={name}
-              width={smallPlanet}
-              height={smallPlanet}
-            />
-          </picture>
+    <AnimatePresence exitBeforeEnter>
+      <BlurbWrap>
+        <PlanetWrap>
+          <InfoWrap>
+            <PlanetImage
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <source
+                media="(min-width: 992px)"
+                srcSet={imageInternal}
+                alt={name}
+                width={largePlanet}
+                height={largePlanet}
+              />
+              <source
+                media="(min-width: 767px)"
+                srcSet={imageInternal}
+                alt={name}
+                width={mediumPlanet}
+                height={mediumPlanet}
+              />
+              <img
+                src={imageInternal}
+                alt={name}
+                width={smallPlanet}
+                height={smallPlanet}
+              />
+            </PlanetImage>
 
-          <PlanetDescription
-            name={name}
-            content={structureContent}
-            wikipedia={structureWikipedia}
+            <PlanetDescription
+              name={name}
+              content={structureContent}
+              wikipedia={structureWikipedia}
+            />
+          </InfoWrap>
+          <PlanetMetrics
+            temperature={temperature}
+            radius={radius}
+            revolution={revolution}
+            rotation={rotation}
           />
-        </InfoWrap>
-        <PlanetMetrics
-          temperature={temperature}
-          radius={radius}
-          revolution={revolution}
-          rotation={rotation}
-        />
-      </PlanetWrap>
-    </BlurbWrap>
+        </PlanetWrap>
+      </BlurbWrap>
+    </AnimatePresence>
   );
 }
 
@@ -88,30 +95,30 @@ const InfoWrap = styled.div`
   align-items: center;
   justify-content: center;
 
-  picture {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 256px;
-    height: 256px;
-  }
-
   @media ${(props) => props.theme.tablet} {
     margin: unset;
 
-    picture {
-      width: 422px;
-      height: 422px;
-    }
-
     @media ${(props) => props.theme.laptop} {
       flex-direction: row;
+    }
+  }
+`;
 
-      picture {
-        width: 666px;
-        height: 666px;
-        background-color: transparent;
-      }
+const PlanetImage = styled(motion.picture)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 256px;
+  height: 256px;
+
+  @media ${(props) => props.theme.tablet} {
+    width: 422px;
+    height: 422px;
+
+    @media ${(props) => props.theme.laptop} {
+      width: 666px;
+      height: 666px;
+      background-color: transparent;
     }
   }
 `;

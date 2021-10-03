@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PlanetDescription from "../../atoms/PlanetDescription";
 import PlanetMetrics from "../../atoms/PlanetMetrics";
+import { motion } from "framer-motion";
 
 function BlurbOne({
   imagePlanet,
@@ -20,7 +21,12 @@ function BlurbOne({
     <BlurbWrap>
       <PlanetWrap>
         <InfoWrap>
-          <picture>
+          <PlanetImage
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            exit={{ opacity: 0 }}
+          >
             <source
               media="(min-width: 992px)"
               srcSet={imagePlanet}
@@ -36,13 +42,12 @@ function BlurbOne({
               height={mediumPlanet}
             />
             <img
-              rel="preload"
               src={imagePlanet}
               alt={name}
               width={smallPlanet}
               height={smallPlanet}
             />
-          </picture>
+          </PlanetImage>
           <PlanetDescription
             name={name}
             content={overviewContent}
@@ -87,30 +92,29 @@ const InfoWrap = styled.div`
   align-items: center;
   justify-content: center;
 
-  picture {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 256px;
-    height: 256px;
-  }
-
   @media ${(props) => props.theme.tablet} {
     margin: unset;
 
-    picture {
-      width: 422px;
-      height: 422px;
-    }
-
     @media ${(props) => props.theme.laptop} {
       flex-direction: row;
+    }
+  }
+`;
 
-      picture {
-        width: 666px;
-        height: 666px;
-        background-color: transparent;
-      }
+const PlanetImage = styled(motion.picture)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 256px;
+  height: 256px;
+  @media ${(props) => props.theme.tablet} {
+    width: 422px;
+    height: 422px;
+
+    @media ${(props) => props.theme.laptop} {
+      width: 666px;
+      height: 666px;
+      background-color: transparent;
     }
   }
 `;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import planets from "../../data/planets.json";
 import { theme } from "../../styles/theme";
@@ -14,9 +14,16 @@ function NavBar() {
     return setOpacity(e);
   };
 
+  useEffect(() => {
+    const body = document.querySelector("body");
+    body.style.overflow = modalOpen ? "hidden" : "unset";
+  });
+
   return (
     <Header>
-      <h1>The Planets</h1>
+      <Link to={"/Earth"} style={{ textDecoration: "none", color: "unset" }}>
+        <h1>The Planets</h1>
+      </Link>
       <Planet>
         {planets.map((planet) => (
           <PlanetContainer

@@ -82,6 +82,7 @@ function PlanetInfo({
   return (
     <TopWrap>
       <Top>
+        {" "}
         <ListWrap>
           <ul>
             <li
@@ -205,6 +206,7 @@ const ListWrap = styled.div`
     top: 516px;
     right: 24px;
     left: 447px;
+    z-index: 1;
 
     @media ${(props) => props.theme.laptop} {
       right: 165px;

@@ -1,9 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 function PlanetDescription({ name, content, wikipedia }) {
   return (
-    <Description>
+    <Description
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+    >
       <h1>{name}</h1>
       <p>{content}</p>
       <div>
@@ -22,13 +27,22 @@ function PlanetDescription({ name, content, wikipedia }) {
 
 export default PlanetDescription;
 
-const Description = styled.div`
+const Description = styled(motion.div)`
   color: ${(props) => props.theme.fontColor};
   text-align: center;
   margin: 20px 0 28px;
 
   @media ${(props) => props.theme.tablet} {
     text-align: left;
+    width: 380px;
+    height: 280px;
+    margin: 37px 390px 28px 0;
+
+    @media ${(props) => props.theme.laptop} {
+      width: unset;
+      height: unset;
+      margin: 20px 0 28px;
+    }
   }
 
   h1 {
@@ -61,7 +75,7 @@ const Description = styled.div`
     margin: 0 24px 32px;
 
     @media ${(props) => props.theme.tablet} {
-      margin: 0 390px 32px 39px;
+      margin-left: 39px;
 
       @media ${(props) => props.theme.laptop} {
         font-size: 14px;
@@ -81,6 +95,7 @@ const Description = styled.div`
     font-size: 12px;
 
     @media ${(props) => props.theme.tablet} {
+      margin-top: -20px;
       margin-left: 39px;
 
       @media ${(props) => props.theme.laptop} {

@@ -49,7 +49,7 @@ const MetricContainer = styled.div`
     height: 88px;
     display: unset;
     flex-direction: column;
-    margin: 0 5.5px;
+    margin-right: 12px;
 
     @media ${(props) => props.theme.laptop} {
       width: 235px;
@@ -92,8 +92,8 @@ const MetricContainer = styled.div`
       letter-spacing: -0.75px;
       color: ${(props) => props.theme.fontColor};
       width: 90px;
-      top: 1px;
-      bottom: 13px;
+      top: 0;
+      bottom: 0;
       left: 190px;
       height: 100%;
       text-align: right;
@@ -102,7 +102,7 @@ const MetricContainer = styled.div`
         font-size: 24px;
         letter-spacing: -0.9px;
         height: 110%;
-        width: 100px;
+        width: 110px;
         top: 38px;
         left: 0;
         bottom: 19px;

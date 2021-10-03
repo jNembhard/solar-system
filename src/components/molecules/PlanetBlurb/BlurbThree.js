@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PlanetDescription from "../../atoms/PlanetDescription";
 import PlanetMetrics from "../../atoms/PlanetMetrics";
+import { motion } from "framer-motion";
 
 function BlurbThree({
   geologyContent,
@@ -21,7 +22,12 @@ function BlurbThree({
     <BlurbWrap>
       <PlanetWrap>
         <InfoWrap>
-          <PlanetImage>
+          <PlanetImage
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            exit={{ opacity: 0 }}
+          >
             <source
               media="(min-width: 992px)"
               srcSet={imagePlanet}
@@ -37,15 +43,22 @@ function BlurbThree({
               height={mediumPlanet}
             />
             <img
-              rel="preload"
               src={imagePlanet}
               alt={name}
               width={smallPlanet}
               height={smallPlanet}
             />
           </PlanetImage>
-          <PlanetZoom src={imageZoom} alt="" />
-
+          <ZoomContainer>
+            <PlanetZoom
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, duration: 0.7 }}
+              exit={{ opacity: 0 }}
+              src={imageZoom}
+              alt=""
+            />
+          </ZoomContainer>
           <PlanetDescription
             name={name}
             content={geologyContent}
@@ -74,41 +87,42 @@ const BlurbWrap = styled.div`
   justify-content: center;
 `;
 
-const PlanetImage = styled.picture`
-  position: relative;
-  bottom: -25px;
-`;
-
-const PlanetZoom = styled.img`
+const ZoomContainer = styled.div`
   position: absolute;
   width: 85px;
   height: 95px;
-  bottom: 40%;
+  bottom: ${({ name }) =>
+    name === "Mercury" ? "15%" : name === "Jupiter" ? "0" : "12%"};
+  margin: 0 auto;
+  left: 15px;
+  right: 0;
+  top: 300px;
   background-color: transparent;
+  z-index: 2;
 
-  @media (min-width: 414px) {
-    bottom: 55%;
+  @media ${(props) => props.theme.tablet} {
+    width: 163px;
+    height: 199px;
 
-    @media ${(props) => props.theme.tablet} {
-      bottom: 0;
-      top: 250px;
-      width: 163px;
-      height: 199px;
-
-      @media ${(props) => props.theme.laptop} {
-        width: 163px;
-        height: 199px;
-        top: 400px;
-        left: 259px;
-
-        @media ${(props) => props.theme.desktop} {
-          width: 163px;
-          height: 199px;
-          right: 878px;
-          bottom: 271px;
-        }
-      }
+    @media ${(props) => props.theme.laptop} {
+      top: 450px;
+      bottom: ${({ name }) =>
+        name === "Mercury" ? "5%" : name === "Jupiter" ? "3%" : "0"};
+      left: ${({ name }) => (name === "Mercury" || "Mars" ? "-95%" : "0")};
+      right: ${({ name }) => (name === "Mercury" || "Mars" ? "-50%" : "0")};
     }
+  }
+`;
+
+const PlanetZoom = styled(motion.img)`
+  width: 85px;
+  height: 95px;
+  background-color: transparent;
+  background-image: none;
+
+  @media ${(props) => props.theme.tablet} {
+    width: 163px;
+    height: 199px;
   }
 `;
 
@@ -128,31 +142,34 @@ const InfoWrap = styled.div`
   align-items: center;
   justify-content: center;
 
-  picture {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 256px;
-    height: 256px;
-  }
-
   @media ${(props) => props.theme.tablet} {
     margin: unset;
     margin-bottom: 28px;
 
-    picture {
-      width: 422px;
-      height: 422px;
-    }
-
     @media ${(props) => props.theme.laptop} {
       flex-direction: row;
+    }
+  }
+`;
 
-      picture {
-        width: 666px;
-        height: 666px;
-        background-color: transparent;
-      }
+const PlanetImage = styled(motion.picture)`
+  position: relative;
+  bottom: -25px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 256px;
+  height: 256px;
+
+  @media ${(props) => props.theme.tablet} {
+    width: 422px;
+    height: 422px;
+
+    @media ${(props) => props.theme.laptop} {
+      width: 666px;
+      height: 666px;
+      background-color: transparent;
     }
   }
 `;
