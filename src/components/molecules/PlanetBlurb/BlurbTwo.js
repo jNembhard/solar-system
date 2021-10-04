@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PlanetDescription from "../../atoms/PlanetDescription";
 import PlanetMetrics from "../../atoms/PlanetMetrics";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 function BlurbTwo({
   imageInternal,
@@ -18,53 +18,51 @@ function BlurbTwo({
   rotation,
 }) {
   return (
-    <AnimatePresence exitBeforeEnter>
-      <BlurbWrap>
-        <PlanetWrap>
-          <InfoWrap>
-            <PlanetImage
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <source
-                media="(min-width: 992px)"
-                srcSet={imageInternal}
-                alt={name}
-                width={largePlanet}
-                height={largePlanet}
-              />
-              <source
-                media="(min-width: 767px)"
-                srcSet={imageInternal}
-                alt={name}
-                width={mediumPlanet}
-                height={mediumPlanet}
-              />
-              <img
-                src={imageInternal}
-                alt={name}
-                width={smallPlanet}
-                height={smallPlanet}
-              />
-            </PlanetImage>
-
-            <PlanetDescription
-              name={name}
-              content={structureContent}
-              wikipedia={structureWikipedia}
+    <BlurbWrap>
+      <PlanetWrap>
+        <InfoWrap>
+          <PlanetImage
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <source
+              media="(min-width: 992px)"
+              srcSet={imageInternal}
+              alt={name}
+              width={largePlanet}
+              height={largePlanet}
             />
-          </InfoWrap>
-          <PlanetMetrics
-            temperature={temperature}
-            radius={radius}
-            revolution={revolution}
-            rotation={rotation}
+            <source
+              media="(min-width: 767px)"
+              srcSet={imageInternal}
+              alt={name}
+              width={mediumPlanet}
+              height={mediumPlanet}
+            />
+            <img
+              src={imageInternal}
+              alt={name}
+              width={smallPlanet}
+              height={smallPlanet}
+            />
+          </PlanetImage>
+
+          <PlanetDescription
+            name={name}
+            content={structureContent}
+            wikipedia={structureWikipedia}
           />
-        </PlanetWrap>
-      </BlurbWrap>
-    </AnimatePresence>
+        </InfoWrap>
+        <PlanetMetrics
+          temperature={temperature}
+          radius={radius}
+          revolution={revolution}
+          rotation={rotation}
+        />
+      </PlanetWrap>
+    </BlurbWrap>
   );
 }
 

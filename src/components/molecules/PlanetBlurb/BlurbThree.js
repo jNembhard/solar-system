@@ -94,7 +94,7 @@ const ZoomContainer = styled.div`
   bottom: ${({ name }) =>
     name === "Mercury" ? "15%" : name === "Jupiter" ? "0" : "12%"};
   margin: 0 auto;
-  left: 15px;
+  left: 0;
   right: 0;
   top: 300px;
   background-color: transparent;
@@ -108,8 +108,12 @@ const ZoomContainer = styled.div`
       top: 450px;
       bottom: ${({ name }) =>
         name === "Mercury" ? "5%" : name === "Jupiter" ? "3%" : "0"};
-      left: ${({ name }) => (name === "Mercury" || "Mars" ? "-95%" : "0")};
+      left: ${({ name }) => (name === "Mercury" || "Mars" ? "-89.5%" : "0")};
       right: ${({ name }) => (name === "Mercury" || "Mars" ? "-50%" : "0")};
+
+      @media ${(props) => props.theme.desktop} {
+        left: ${({ name }) => (name === "Mercury" || "Mars" ? "-95%" : "0")};
+      }
     }
   }
 `;
