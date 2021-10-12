@@ -20,9 +20,8 @@ function App() {
         <AnimatePresence exitBeforeEnter>
           <Switch>
             {planets.map((planet) => (
-              <Route path={`/${planet.name}`}>
+              <Route key={planet.id} path={`/${planet.name}`}>
                 <PlanetInfo
-                  key={planet.id}
                   name={planet.name}
                   overviewContent={planet.overview.content}
                   structureContent={planet.structure.content}

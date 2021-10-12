@@ -52,16 +52,15 @@ function NavBar() {
       </PlanetHamburger>
       <PlanetSidebar modalOpen={modalOpen}>
         {planets.map((planet) => (
-          <ul>
+          <ul key={planet.id}>
             <Link
-              key={planet.id}
               to={`/${planet.name}`}
               style={{ textDecoration: "none" }}
               onClick={() =>
                 toggle() ? handleOpacity(opacity) : handleOpacity(1.3 - opacity)
               }
             >
-              <li key={planet.id} onClick={() => setModalOpen(false)}>
+              <li onClick={() => setModalOpen(false)}>
                 <Circle color={handleColor(planet.name)} />
                 {planet.name}
                 <Arrow

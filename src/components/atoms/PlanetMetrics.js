@@ -11,7 +11,7 @@ function PlanetMetrics({ temperature, radius, revolution, rotation }) {
   return (
     <Metrics>
       {blocks.map((block) => (
-        <MetricContainer>
+        <MetricContainer key={block.id}>
           <p>
             {block.metric}
             <span>{block.name}</span>

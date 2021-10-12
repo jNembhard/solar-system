@@ -33,6 +33,7 @@ function BlurbTwo({
               alt={name}
               width={largePlanet}
               height={largePlanet}
+              type="image/svg+xml"
             />
             <source
               media="(min-width: 767px)"
@@ -40,6 +41,7 @@ function BlurbTwo({
               alt={name}
               width={mediumPlanet}
               height={mediumPlanet}
+              type="image/svg+xml"
             />
             <img
               src={imageInternal}

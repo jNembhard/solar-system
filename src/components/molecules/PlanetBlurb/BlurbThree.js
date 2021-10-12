@@ -34,6 +34,7 @@ function BlurbThree({
               alt={name}
               width={largePlanet}
               height={largePlanet}
+              type="image/svg+xml"
             />
             <source
               media="(min-width: 767px)"
@@ -41,6 +42,7 @@ function BlurbThree({
               alt={name}
               width={mediumPlanet}
               height={mediumPlanet}
+              type="image/svg+xml"
             />
             <img
               src={imagePlanet}
